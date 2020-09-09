@@ -9,7 +9,8 @@ class TicketControl extends React.Component {
     this.state = {
       formVisibleOnPage: false,
       masterTicketList: [],
-      selectedTicket: null
+      selectedTicket: null,
+      editing: false
     };
   }
 
@@ -24,6 +25,11 @@ class TicketControl extends React.Component {
         formVisibleOnPage: !prevState.formVisibleOnPage,
       }));
     }
+  }
+
+  handleEditClick = () => {
+    console.log("handleEditClick reached!");
+    this.setState({editing: true});
   }
 
   handleAddingNewTicketToList = (newTicket) => {
