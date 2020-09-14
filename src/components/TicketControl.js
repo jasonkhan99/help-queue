@@ -56,23 +56,31 @@ class TicketControl extends React.Component {
     this.setState({selectedTicket: selectedTicket});
   }
 
-  handleEditingTicketInList = (ticketToEdit) => {
-    const editedMasterTicketList = this.state.masterTicketList
-      .filter(ticket => ticket.id !== this.state.selectedTicket.id)
-      .concat(ticketToEdit);
+  handleAddingNewTicketToList = (newTicket) => {
+    const { dispatch } = this.props;
+    const { id, names, location, issue } = newTicket;
+    const action = {
+      type: 'ADD_TICKET',
+      id: id,
+      names: names,
+      location: location,
+      issue: issue,
+    }
+    dispatch(action);
     this.setState({
-        masterTicketList: editedMasterTicketList,
-        editing: false,
-        selectedTicket: null
-      });
+      editing: false,
+      selectedTicket: null
+    });
   }
 
   handleDeletingTicket = (id) => {
-    const newMasterTicketList = this.state.masterTicketList.filter(ticket => ticket.id !== id);
-    this.setState({
-      masterTicketList: newMasterTicketList,
-      selectedTicket: null
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE_TICKET',
+      id: id
+    }
+    dispatch(action);
+    this.setState({selectedTicket: null});
   }
 
   render(){
