@@ -1,4 +1,7 @@
 import rootReducer from '../../reducers/index';
+import { createStore } from 'redux';
+
+let store = createStore(rootReducer);
 
 describe("rootReducer", () => {
 
